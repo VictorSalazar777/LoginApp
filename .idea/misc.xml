@@ -3,9 +3,16 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="app/src/main/res/layout-w1240dp/activity_login.xml" value="0.26326530612244897" />
-        <entry key="app/src/main/res/layout-w936dp/activity_login.xml" value="0.33" />
-        <entry key="app/src/main/res/layout/activity_login.xml" value="0.1" />
+        <entry key="app/src/main/res/layout-w1240dp/activity_login.xml" value="0.33" />
+        <entry key="app/src/main/res/layout-w1240dp/fragment_sign_in_email.xml" value="0.11292517006802721" />
+        <entry key="app/src/main/res/layout-w1240dp/fragment_signin.xml" value="0.1432942376338603" />
+        <entry key="app/src/main/res/layout-w936dp/activity_login.xml" value="0.1" />
+        <entry key="app/src/main/res/layout-w936dp/fragment_sign_in_email.xml" value="0.1" />
+        <entry key="app/src/main/res/layout-w936dp/fragment_signin.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/activity_login.xml" value="0.33" />
+        <entry key="app/src/main/res/layout/fragment_login_menu.xml" value="0.20208333333333334" />
+        <entry key="app/src/main/res/layout/fragment_signin.xml" value="0.22" />
+        <entry key="app/src/main/res/layout/fragment_signup.xml" value="0.33" />
       </map>
     </option>
   </component>
