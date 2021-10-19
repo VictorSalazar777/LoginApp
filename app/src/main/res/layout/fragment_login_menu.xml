@@ -41,7 +41,7 @@
         android:id="@+id/btn_google_sign_in"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:gravity="start|center"
+        android:gravity="start|center_vertical"
         android:drawableLeft="@drawable/common_google_signin_btn_icon_dark"
         android:text="Sign in with Google"
         android:layout_marginTop="8dp"

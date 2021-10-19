@@ -3,6 +3,7 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="../../../.gradle/caches/transforms-3/9664ebaf1f41ee0aa0df803002f3e753/transformed/jetified-play-services-base-17.5.0/res/drawable/common_google_signin_btn_icon_dark.xml" value="0.21822916666666667" />
         <entry key="app/src/main/res/layout-w1240dp/activity_login.xml" value="0.33" />
         <entry key="app/src/main/res/layout-w1240dp/fragment_sign_in_email.xml" value="0.11292517006802721" />
         <entry key="app/src/main/res/layout-w1240dp/fragment_signin.xml" value="0.1432942376338603" />
@@ -10,7 +11,7 @@
         <entry key="app/src/main/res/layout-w936dp/fragment_sign_in_email.xml" value="0.1" />
         <entry key="app/src/main/res/layout-w936dp/fragment_signin.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_login.xml" value="0.33" />
-        <entry key="app/src/main/res/layout/fragment_login_menu.xml" value="0.22" />
+        <entry key="app/src/main/res/layout/fragment_login_menu.xml" value="0.33" />
         <entry key="app/src/main/res/layout/fragment_sign_up_email.xml" value="0.16458333333333333" />
         <entry key="app/src/main/res/layout/fragment_signin.xml" value="0.22" />
         <entry key="app/src/main/res/layout/fragment_signup.xml" value="0.33" />

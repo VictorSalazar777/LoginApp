@@ -1,4 +1,4 @@
-package com.manuelsoft.loginapp.ui.login
+package com.manuelsoft.loginapp.ui.login.viewmodel
 
 /**
  * Data validation state of the login form.

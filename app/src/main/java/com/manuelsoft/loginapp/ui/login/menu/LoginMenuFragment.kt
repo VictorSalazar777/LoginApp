@@ -1,4 +1,4 @@
-package com.manuelsoft.loginapp.ui.login
+package com.manuelsoft.loginapp.ui.login.menu
 
 import android.os.Bundle
 import android.view.View
@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.commit
 import com.manuelsoft.loginapp.R
 import com.manuelsoft.loginapp.databinding.FragmentLoginMenuBinding
+import com.manuelsoft.loginapp.ui.login.email.SignInFragment
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

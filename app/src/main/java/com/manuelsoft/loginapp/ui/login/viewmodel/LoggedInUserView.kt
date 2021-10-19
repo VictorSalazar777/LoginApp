@@ -1,4 +1,4 @@
-package com.manuelsoft.loginapp.ui.login
+package com.manuelsoft.loginapp.ui.login.viewmodel
 
 /**
  * User details post authentication that is exposed to the UI

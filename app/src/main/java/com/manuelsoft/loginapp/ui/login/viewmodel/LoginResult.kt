@@ -1,4 +1,4 @@
-package com.manuelsoft.loginapp.ui.login
+package com.manuelsoft.loginapp.ui.login.viewmodel
 
 /**
  * Authentication result : success (user details) or error message.

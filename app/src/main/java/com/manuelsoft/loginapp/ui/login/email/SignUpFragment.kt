@@ -1,4 +1,4 @@
-package com.manuelsoft.loginapp.ui.login
+package com.manuelsoft.loginapp.ui.login.email
 
 import android.os.Bundle
 import android.view.View

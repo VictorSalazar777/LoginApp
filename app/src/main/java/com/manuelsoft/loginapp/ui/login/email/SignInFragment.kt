@@ -1,4 +1,4 @@
-package com.manuelsoft.loginapp.ui.login
+package com.manuelsoft.loginapp.ui.login.email
 
 import android.os.Bundle
 import android.text.Editable
@@ -15,6 +15,9 @@ import androidx.lifecycle.Observer
 import com.google.firebase.auth.FirebaseAuth
 import com.manuelsoft.loginapp.R
 import com.manuelsoft.loginapp.databinding.FragmentSignInEmailBinding
+import com.manuelsoft.loginapp.ui.login.viewmodel.LoggedInUserView
+import com.manuelsoft.loginapp.ui.login.viewmodel.LoginFormState
+import com.manuelsoft.loginapp.ui.login.viewmodel.LoginViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

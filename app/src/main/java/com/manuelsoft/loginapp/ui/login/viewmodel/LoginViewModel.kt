@@ -1,4 +1,4 @@
-package com.manuelsoft.loginapp.ui.login
+package com.manuelsoft.loginapp.ui.login.viewmodel
 
 import android.util.Patterns
 import androidx.lifecycle.LiveData

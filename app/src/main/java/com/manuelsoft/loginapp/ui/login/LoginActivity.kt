@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.commit
 import com.manuelsoft.loginapp.R
 import com.manuelsoft.loginapp.databinding.ActivityLoginBinding
+import com.manuelsoft.loginapp.ui.login.menu.LoginMenuFragment
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
