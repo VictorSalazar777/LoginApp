@@ -12,6 +12,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.commit
 import androidx.lifecycle.Observer
+import com.google.firebase.auth.FirebaseAuth
 import com.manuelsoft.loginapp.R
 import com.manuelsoft.loginapp.databinding.FragmentSignInEmailBinding
 import dagger.hilt.android.AndroidEntryPoint
@@ -20,6 +21,7 @@ import dagger.hilt.android.AndroidEntryPoint
 class SignInFragment: Fragment(R.layout.fragment_sign_in_email) {
     private val loginViewModel: LoginViewModel by activityViewModels()
     private var binding: FragmentSignInEmailBinding? = null
+    private lateinit var auth: FirebaseAuth
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -38,7 +40,6 @@ class SignInFragment: Fragment(R.layout.fragment_sign_in_email) {
                 showSignUpFragment()
             }
         }
-
     }
 
     private fun setupToolbar(it: FragmentSignInEmailBinding) {
