@@ -19,6 +19,10 @@ class LoginViewModel @Inject constructor(private val loginRepository: LoginRepos
     private val _loginResult = MutableLiveData<LoginResult>()
     val loginResult: LiveData<LoginResult> = _loginResult
 
+    private val _clickSignInWithGoogleBtn = MutableLiveData<Unit?>()
+
+    val clickSignInWithGoogleBtn: LiveData<Unit?> = _clickSignInWithGoogleBtn
+
     fun login(username: String, password: String) {
         // can be launched in a separate asynchronous job
         val result = loginRepository.login(username, password)
@@ -53,5 +57,9 @@ class LoginViewModel @Inject constructor(private val loginRepository: LoginRepos
     // A placeholder password validation check
     private fun isPasswordValid(password: String): Boolean {
         return password.length > 5
+    }
+
+    fun clickSignInWithGoogleBtn() {
+        _clickSignInWithGoogleBtn.value = null
     }
 }
