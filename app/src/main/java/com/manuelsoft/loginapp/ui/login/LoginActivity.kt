@@ -1,6 +1,7 @@
 package com.manuelsoft.loginapp.ui.login
 
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -9,9 +10,12 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.commit
 import com.google.android.gms.auth.api.identity.SignInCredential
 import com.google.android.material.snackbar.Snackbar
+import com.google.firebase.auth.FirebaseUser
 import com.manuelsoft.loginapp.R
 import com.manuelsoft.loginapp.data.model.GoogleSignInData
 import com.manuelsoft.loginapp.databinding.ActivityLoginBinding
+import com.manuelsoft.loginapp.firebase.AppAuth
+import com.manuelsoft.loginapp.firebase.AppAuthImpl
 import com.manuelsoft.loginapp.ui.home.HomeActivity
 import com.manuelsoft.loginapp.ui.login.menu.LoginMenuFragment
 import com.manuelsoft.loginapp.ui.login.viewmodel.LoginViewModel
@@ -23,6 +27,10 @@ class LoginActivity : AppCompatActivity() {
 
     @Inject
     lateinit var googleOneTap: GoogleOneTap
+
+    @Inject
+    lateinit var appAuth: AppAuth
+
     private val loginViewModel: LoginViewModel by viewModels()
 
     companion object {
@@ -86,8 +94,7 @@ class LoginActivity : AppCompatActivity() {
                         // Got an ID token from Google. Use it to authenticate
                         // with your backend.
                         Log.d(TAG, "Got ID token.")
-                        loginViewModel.saveGoogleSignInData(GoogleSignInData.GoogleSignInTokenData(idToken, id, profilePictureUri))
-                        showHomeActivity()
+                        authenticateGoogleToken(idToken, id, profilePictureUri)
                     }
                     password != null -> {
                         // Got a saved username and password. Use them to authenticate
@@ -110,6 +117,42 @@ class LoginActivity : AppCompatActivity() {
 
         })
     }
+
+    private fun authenticateGoogleToken(
+        idToken: String,
+        id: String,
+        profilePictureUri: Uri?
+    ) {
+        appAuth.firebaseAuthWithGoogle(
+            idToken,
+            this@LoginActivity,
+            object : AppAuthImpl.FirebaseAuthTask {
+                override fun success(currentUser: FirebaseUser?) {
+                    Log.d(TAG, "current user: $currentUser")
+                    googleTokenAuthenticationSuccessful(idToken, id, profilePictureUri)
+                }
+
+                override fun failure() {
+                    showMessage("Google token authentication failed")
+                }
+            })
+    }
+
+    private fun googleTokenAuthenticationSuccessful(
+        idToken: String,
+        id: String,
+        profilePictureUri: Uri?
+    ) {
+        loginViewModel.saveGoogleSignInData(
+            GoogleSignInData.GoogleSignInTokenData(
+                idToken,
+                id,
+                profilePictureUri
+            )
+        )
+        showHomeActivity()
+    }
+
 
     private fun showMessage(message: String) {
         val contextView = findViewById<View>(android.R.id.content)

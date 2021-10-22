@@ -2,7 +2,6 @@ package com.manuelsoft.loginapp.ui.home
 
 import android.content.Intent
 import android.os.Bundle
-import android.os.PersistableBundle
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
@@ -13,6 +12,7 @@ import com.google.android.material.snackbar.Snackbar
 import com.manuelsoft.loginapp.R
 import com.manuelsoft.loginapp.data.model.GoogleSignInData
 import com.manuelsoft.loginapp.databinding.ActivityHomeBinding
+import com.manuelsoft.loginapp.firebase.AppAuth
 import com.manuelsoft.loginapp.ui.home.viewmodel.HomeViewModel
 import com.manuelsoft.loginapp.ui.login.GoogleOneTap
 import com.manuelsoft.loginapp.ui.login.LoginActivity
@@ -27,6 +27,9 @@ class HomeActivity: AppCompatActivity() {
 
     @Inject
     lateinit var googleOneTap: GoogleOneTap
+
+    @Inject
+    lateinit var appAuth: AppAuth
 
     private val homeViewModel: HomeViewModel by viewModels()
 
@@ -70,6 +73,8 @@ class HomeActivity: AppCompatActivity() {
     }
 
     private fun signOut() {
+        appAuth.signOut()
+
         googleOneTap.signOut(object: SignOut {
             override fun onSuccess() {
                 showLoginScreen()
