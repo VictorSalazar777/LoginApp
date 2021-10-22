@@ -112,46 +112,45 @@ class GoogleOneTapImpl @Inject constructor(): GoogleOneTap {
             }
     }
 
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+    override fun signOut(signOut: SignOut) {
+        oneTapClient
+            .signOut()
+            .addOnSuccessListener {
+                Log.d(TAG, "Success sign out")
+                signOut.onSuccess()
+            }
+            .addOnFailureListener { e ->
+                Log.d(TAG, e.localizedMessage ?: "null")
+                signOut.onFailure()
+            }
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?, signIn: SignIn) {
         when (requestCode) {
             REQ_ONE_TAP -> {
                 try {
                     val credential = oneTapClient.getSignInCredentialFromIntent(data)
-                    val idToken = credential.googleIdToken
-                    val username = credential.id
-                    val password = credential.password
-                    when {
-                        idToken != null -> {
-                            // Got an ID token from Google. Use it to authenticate
-                            // with your backend.
-                            Log.d(TAG, "Got ID token.")
-                        }
-                        password != null -> {
-                            // Got a saved username and password. Use them to authenticate
-                            // with your backend.
-                            Log.d(TAG, "Got password.")
-                        }
-                        else -> {
-                            // Shouldn't happen.
-                            Log.d(TAG, "No ID token or password!")
-                        }
-                    }
+                    signIn.onSuccess(credential)
                 } catch (e: ApiException) {
                     when (e.statusCode) {
                         CommonStatusCodes.CANCELED -> {
                             Log.d(TAG, "One-tap dialog was closed.")
                             // Don't re-prompt the user.
                             showOneTapUI = false
+                            signIn.onFailure("One-tap dialog was closed.")
                         }
+
                         CommonStatusCodes.NETWORK_ERROR -> {
                             Log.d(TAG, "One-tap encountered a network error.")
                             // Try again or just ignore.
+                            signIn.onFailure("One-tap encountered a network error.")
                         }
                         else -> {
                             Log.d(
                                 TAG, "Couldn't get credential from result." +
                                         " (${e.localizedMessage})"
                             )
+                            signIn.onFailure("Couldn't get credential from result.")
                         }
                     }
                 }

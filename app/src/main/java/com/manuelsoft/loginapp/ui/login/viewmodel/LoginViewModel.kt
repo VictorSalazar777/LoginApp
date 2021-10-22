@@ -7,6 +7,7 @@ import androidx.lifecycle.ViewModel
 import com.manuelsoft.loginapp.R
 import com.manuelsoft.loginapp.data.LoginRepository
 import com.manuelsoft.loginapp.data.Result
+import com.manuelsoft.loginapp.data.model.GoogleSignInData
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
@@ -61,5 +62,9 @@ class LoginViewModel @Inject constructor(private val loginRepository: LoginRepos
 
     fun clickSignInWithGoogleBtn() {
         _clickSignInWithGoogleBtn.value = null
+    }
+
+    fun saveGoogleSignInData(googleSignInData: GoogleSignInData) {
+        loginRepository.saveGoogleSignInData(googleSignInData)
     }
 }

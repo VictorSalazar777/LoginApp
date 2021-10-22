@@ -1,5 +1,6 @@
 package com.manuelsoft.loginapp.data
 
+import com.manuelsoft.loginapp.data.model.GoogleSignInData
 import com.manuelsoft.loginapp.data.model.LoggedInUser
 import javax.inject.Inject
 
@@ -8,14 +9,11 @@ import javax.inject.Inject
  * maintains an in-memory cache of login status and user credentials information.
  */
 
-class LoginRepositoryImpl @Inject constructor(val dataSource: LoginDataSource): LoginRepository {
+class LoginRepositoryImpl @Inject constructor(private val dataSource: LoginDataSource): LoginRepository {
 
     // in-memory cache of the loggedInUser object
-    var user: LoggedInUser? = null
-        private set
-
-    val isLoggedIn: Boolean
-        get() = user != null
+    private var user: LoggedInUser? = null
+    private lateinit var googleSignInData: GoogleSignInData
 
     init {
         // If user credentials will be cached in local storage, it is recommended it be encrypted
@@ -37,6 +35,14 @@ class LoginRepositoryImpl @Inject constructor(val dataSource: LoginDataSource): 
         }
 
         return result
+    }
+
+    override fun saveGoogleSignInData(googleSignInData: GoogleSignInData) {
+        this.googleSignInData = googleSignInData
+    }
+
+    override fun loadGoogleSignInData(): GoogleSignInData {
+        return googleSignInData
     }
 
     private fun setLoggedInUser(loggedInUser: LoggedInUser) {
