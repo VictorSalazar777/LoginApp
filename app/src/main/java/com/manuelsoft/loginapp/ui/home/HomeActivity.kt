@@ -51,11 +51,15 @@ class HomeActivity: AppCompatActivity() {
         val googleSignInData = homeViewModel.loadGoogleSignInData()
         if (googleSignInData is GoogleSignInData.GoogleSignInTokenData) {
             binding?.apply {
-                txvWelcome.text = googleSignInData.email
+                val welcome = String.format(getString(R.string.welcome), googleSignInData.email)
+                txvWelcome.text = welcome
+                Log.d(TAG, "Image uri: ${googleSignInData.profilePictureUri}")
             }
         } else if (googleSignInData is GoogleSignInData.GoogleSignInPasswordData) {
             binding?.apply {
-                txvWelcome.text = googleSignInData.username
+                val welcome = String.format(getString(R.string.welcome), googleSignInData.username)
+                txvWelcome.text = welcome
+                Log.d(TAG, "Image uri: ${googleSignInData.profilePictureUri}")
             }
         }
     }
