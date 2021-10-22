@@ -7,6 +7,7 @@ import androidx.lifecycle.ViewModel
 import com.manuelsoft.loginapp.R
 import com.manuelsoft.loginapp.data.LoginRepository
 import com.manuelsoft.loginapp.data.Result
+import com.manuelsoft.loginapp.data.model.GoogleSignInData
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
@@ -18,6 +19,10 @@ class LoginViewModel @Inject constructor(private val loginRepository: LoginRepos
 
     private val _loginResult = MutableLiveData<LoginResult>()
     val loginResult: LiveData<LoginResult> = _loginResult
+
+    private val _clickSignInWithGoogleBtn = MutableLiveData<Unit?>()
+
+    val clickSignInWithGoogleBtn: LiveData<Unit?> = _clickSignInWithGoogleBtn
 
     fun login(username: String, password: String) {
         // can be launched in a separate asynchronous job
@@ -53,5 +58,13 @@ class LoginViewModel @Inject constructor(private val loginRepository: LoginRepos
     // A placeholder password validation check
     private fun isPasswordValid(password: String): Boolean {
         return password.length > 5
+    }
+
+    fun clickSignInWithGoogleBtn() {
+        _clickSignInWithGoogleBtn.value = null
+    }
+
+    fun saveGoogleSignInData(googleSignInData: GoogleSignInData) {
+        loginRepository.saveGoogleSignInData(googleSignInData)
     }
 }
